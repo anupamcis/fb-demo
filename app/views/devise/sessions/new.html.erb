@@ -1,0 +1,32 @@
+
+
+ <div class="login_form_wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="login_wrapper">
+                <!-- login_wrapper --><h2>Log in</h2>
+                  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                    <div class="formsix-pos">
+                        <div class="form-group i-email"> 
+                          <%= f.label :email %><br />
+                          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                        </div>
+                    </div>
+                    <div class="formsix-e">
+                        <div class="field">
+                          <%= f.label :password %><br />
+                          <%= f.password_field :password, autocomplete: "current-password" %>
+                        </div>
+                    </div>
+                    <div class="login_remember_box">  <a href="/users/password/new" class="forget_password"> Forgot Password </a> </div>
+                    <div class="login_btn_wrapper">     <%= f.submit "Log in" %> </div>
+                     <div class="login_message">
+                        <p>Don’t have an account ? <a href="/users/sign_up"> Sign up </a> </p>
+                    </div>
+                   
+                </div> <!-- /.login_wrapper--><%end%>
+            </div>
+        </div>
+    </div>
+</div>

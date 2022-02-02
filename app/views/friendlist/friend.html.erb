@@ -1,0 +1,26 @@
+<%# <%debugger%> 
+<%@friendlist.each do |friend|%>
+    <%if friend.current_user_id == current_user.id%>
+    
+    
+
+<section class="hero">
+    	<div class="container">
+        	<div class="row">	
+		   		<div class="col-lg-6 offset-lg-3"> 
+					<div class="cardbox shadow-lg bg-white">
+			 			<div class="cardbox-heading">
+			  				<div class="media m-0">
+			   					<div class="d-flex mr-3 mt-5">		
+									<a href="/friendlist/profile/userprofile/<%=friend.friends_id%>"><img class="img-fluid rounded-circle" src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/users/4.jpg" alt="User" height="70px" width="70px" ><span style="font-family:sans-serif;font-size:2.5em;"><i class="icon ion-md-time"></i> <%=@users.find(friend.friends_id).name%></span></a>
+			   					</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+<%end%>
+<%end%>

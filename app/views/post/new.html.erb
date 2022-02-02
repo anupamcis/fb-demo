@@ -1,0 +1,11 @@
+<h1>Creating a new post</h1><br>
+<p>Enter Caption for your post<p>
+<%= form_with(url: "/post", method: :posts) do |form| %>
+	<%= form.text_field :title %><br>
+	<%= form.label :Choose_Image %><br>
+<%= form.file_field :image %><br>
+	<%= form.submit %>
+	
+
+<% end %>
+ 

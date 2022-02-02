@@ -1,0 +1,12 @@
+<div class="container">
+  <h1>Edit Your comment</h1>
+  <%= form_with(url: comment_path(@comments), method: :patch) do |form| %>
+    <div class="form-outline mb-4">
+      <%= form.label :text %><br>
+      <%= form.text_field :text  ,class: "form-control " %>
+    </div>
+    <div>
+      <%= form.submit :save,class:"btn btn-success" %>
+    </div>
+  <% end %>
+</div>

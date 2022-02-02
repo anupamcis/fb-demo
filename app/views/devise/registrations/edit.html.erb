@@ -1,0 +1,74 @@
+
+<div class="login_form_wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <!-- login_wrapper -->
+                <div class="login_wrapper">
+
+                    <h2>Edit your Profile</h2>           
+                    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+                    <%= render "devise/shared/error_messages", resource: resource %>         
+                    
+                     <div class="formsix-e">
+                        <div class="form-group i-password"> 
+                            <%= f.text_field :name, autofocus: true, autocomplete: "name",class:"form-control",placeholder:"Name" %>
+                        </div>
+                    </div>
+
+
+                     <div class="formsix-e">
+                        <div class="form-group i-password"> 
+                            <%= f.text_field :mobile_no, autofocus: true, autocomplete: "email",class:"form-control",placeholder:"Mobile Number" %>
+
+                        </div>
+                    </div>
+
+
+                     <div class="formsix-e">
+                        <div class="form-group i-password"> 
+                            <%= f.email_field :email, autofocus: true, autocomplete: "email" ,class:"form-control",placeholder:"Email"%>
+                        </div>
+                    </div>
+
+                                        
+                    <div class="formsix-pos">
+                        <div class="form-group i-email"> 
+                          <%= f.text_field :work_at, autofocus: true, autocomplete: "work_at" ,class:"form-control",placeholder:"Work at"%>
+                        </div>
+                    </div>
+                   <div class="formsix-pos">
+                        <div class="form-group i-email"> 
+                        
+                          <%= f.text_field :location, autofocus: true, autocomplete: "location" ,class:"form-control",placeholder:"Location"%>
+                        </div>
+                    </div>
+                     <div class="formsix-pos">
+                        <div class="form-group i-email"> 
+                          <%= f.text_field :about, autofocus: true, autocomplete: "about" ,class:"form-control",placeholder:"About"%>
+                        </div>
+                    </div>
+                    <div class="formsix-pos">
+                        <div class="form-group i-email">
+                            <%= f.file_field :image %><br>
+	                    </div>
+                    </div>
+	
+                    <div class="formsix-e">
+                        <div class="form-group i-password"> 
+                            <%= f.password_field :current_password, autocomplete: "current-password" ,class:"form-control",placeholder:"Current Password*"%>
+                        </div>
+                    </div>
+                     
+
+                    <div class="login_btn_wrapper">     
+                      <%= f.submit "Update" %>
+                    <% end %>
+                    </div>
+                        <h5>Want to Delete your account?
+                        <%= button_to "Delete account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></h5>
+                        <%= link_to "Back", :back %>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,146 @@
+<h3>Total number of comments on this post : <%=@commentcount%></h3><br>
+
+<h2 class="card-title text-center">All Comments</h2>
+<%@postcomments.each do|postcomment|%>
+<%if postcomment.coment_id==nil%>
+<div class="row d-flex justify-content-center mt-100 mb-100">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body text-center">
+            </div>
+            <div class="comment-widgets">
+                <!-- Comment Row -->
+                <div class="d-flex flex-row comment-row m-t-0">
+                    <div class="p-2"><img src="https://i.imgur.com/Ur43esv.jpg" alt="user" width="50" class="rounded-circle"></div>
+                    <div class="comment-text w-100 mb-5 ">
+                        <h6 class="font-medium"><%=User.find(postcomment.userid).name%></h6> <span class="m-b-15 d-block", style="font-family:sans-serif;font-size:1.8em;"" ><%=postcomment.text%></span>
+                        <div class="comment-footer"> <span class="text-muted float-right"><%=postcomment.created_at%></span> <br>
+                        <%# <%debugger %>
+                          <button type="button" class="btn btn-cyan btn-sm"><a href="/reply/new/<%=postcomment.id%>">Repy</a></button>
+                            <button type="button" class="btn btn-cyan btn-sm"><a href="/replies/<%=postcomment.id%>">Replies</a></button>
+                          <% if postcomment.userid == current_user.id %>
+                            <li><%=link_to 'Edit', edit_comment_path(postcomment.id),class:"btn btn-primary"%></li>
+                            <li><%=link_to 'Delete',comment_path(postcomment.id), method: "delete",data:{confirm: "Are you sure ?"},class:"btn btn-primary"%></td>
+                          <%end%>
+                        </div>
+                    </div>
+                </div>               
+            </div> 
+        </div>
+    </div>
+</div>
+<%end%>
+<%end%>
+
+
+
+
+
+<%@postcomments.each do|postcomment|%>
+<%if postcomment.coment_id==nil%>
+<div class="comment-thread">
+    <!-- Comment 1 start -->
+    <details open class="comment" id="comment-1">
+        <a href="#comment-1" class="comment-border-link">
+            <span class="sr-only">Jump to comment-1</span>
+        </a>
+        <summary>
+            <div class="comment-heading">
+                <div class="comment-voting">
+                    <button type="button">
+                        <span aria-hidden="true">&#9650;</span>
+                        <span class="sr-only">Vote up</span>
+                    </button>
+                    <button type="button">
+                        <span aria-hidden="true">&#9660;</span>
+                        <span class="sr-only">Vote down</span>
+                    </button>
+                </div>
+                <div class="comment-info">
+                    <a href="#" class="comment-author"><%=User.find(postcomment.userid).name%></a>
+                    <p class="m-0">
+                        <%=postcomment.created_at%>
+                    </p>
+                </div>
+            </div>
+        </summary>
+        <div class="comment-body">
+            <p>
+               <%=postcomment.text%>
+            </p>
+                <button type="button" class="btn btn-cyan btn-sm"><a href="/reply/new/<%=postcomment.id%>">Repy</a></button>
+                <% if postcomment.userid == current_user.id %>
+                    <li><%=link_to 'Edit', edit_comment_path(postcomment.id),class:"btn btn-primary"%></li>
+                    <li><%=link_to 'Delete',comment_path(postcomment.id), method: "delete",data:{confirm: "Are you sure ?"},class:"btn btn-primary"%></td>
+                <%end%>
+            <form method="POST" class="reply-form d-none" id="comment-1-reply-form">
+                <textarea placeholder="Reply to comment" rows="4"></textarea>
+                <button type="submit">Submit</button>
+                <button type="button" data-toggle="reply-form" data-target="comment-1-reply-form">Cancel</button>
+            </form>
+        </div>
+
+
+        <%@replies.each do|i|%>
+        <% if i.coment_id == postcomment.id%>
+        
+        <div class="replies">
+            <!-- Comment 2 start -->
+            <details open class="comment" id="comment-2">
+                <a href="#comment-2" class="comment-border-link">
+                    <span class="sr-only">Jump to comment-2</span>
+                </a>
+                <summary>
+                    <div class="comment-heading">
+                       
+                        <div class="comment-info">
+                            <a href="#" class="comment-author"><%=User.find(i.userid).name%></a>
+                            <p class="m-0">
+                               <%=postcomment.created_at%>
+                            </p>
+                        </div>
+                    </div>
+                </summary>
+
+                <div class="comment-body">
+                    <p>
+                        <%=i.text%>                   
+                     </p>
+                          <button type="button" class="btn btn-cyan btn-sm"><a href="/reply/new/<%=i.id%>">Repy</a></button>
+                          <button type="button" class="btn btn-cyan btn-sm"><a href="/replies/<%=i.id%>">Replies</a></button>
+                    <% if postcomment.userid == current_user.id %>
+                            <li><%=link_to 'Edit', edit_comment_path(postcomment.id),class:"btn btn-primary"%></li>
+                            <li><%=link_to 'Delete',comment_path(postcomment.id), method: "delete",data:{confirm: "Are you sure ?"},class:"btn btn-primary"%></td>
+                          <%end%>
+                    <form method="POST" class="reply-form d-none" id="comment-2-reply-form">
+                        <textarea placeholder="Reply to comment" rows="4"></textarea>
+                        <button type="submit">Submit</button>
+                        <button type="button" data-toggle="reply-form" data-target="comment-2-reply-form">Cancel</button>
+                    </form>
+                </div>
+            </details>
+        </div>
+        <%end%>
+        <%end%>
+    </details>
+</div>
+<%end%>
+<%end%>
+
+
+
+<div class="row d-flex justify-content-center">
+  <div class="col-md-8 col-lg-6">
+    <div class="card shadow-0 border" style="background-color: #f0f2f5;">
+      <div class="card-body p-4">
+        <div class="form-outline mb-4">
+            <p> Create a New Comment</p>
+            <%= form_with(url: "/comment", method: :comments) do |form| %>
+                <%= form.text_field :title %>
+                <%= form.submit %>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

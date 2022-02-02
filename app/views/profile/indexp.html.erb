@@ -1,0 +1,82 @@
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<section class="h-100 gradient-custom-2">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center  h-100">
+      <div class="col col-lg-9 col-xl-7">
+        <div class="card">
+          <div class="rounded-top text-white d-flex flex-row" style="background-color: #000; height:200px;">
+            <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
+							<% if current_user.image_url%>
+                <img src="<%=current_user.image.url%>" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
+							<%else%>
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
+              
+     			    <%end%>			 	
+              <button type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark" style="z-index: 1;">
+			        	<%= link_to ' Edit profile ', edit_user_registration_path(),class:"text-decoration-none text-dark"%>
+              </button>
+            </div>
+            <div class="ms-3" style="margin-top: 130px;">
+              <h5><%=current_user.name%></h5>
+              <p><%= current_user.location%></p>
+            </div>
+          </div>
+          <div class="p-4 text-black" style="background-color: #f8f9fa;">
+            <div class="d-flex justify-content-end  text-center py-1">
+              <div>
+                <p class="mb-1 h5"><%=@postcount%></p>
+                <p  ><a class="small text-muted mb-0" href="user/friend" style="text-decoration:none;">Posts</a></p>
+	
+              </div>
+              <div class="px-3">
+                <p class="mb-1 h5"><%=@friendcount%></p>
+                <p><a class="small text-muted mb-0" href="friendlist/friend" style="text-decoration:none;">Friends</a></p>
+				
+              </div>
+            </div>
+          </div>
+          <div class="card-body p-4 text-black">
+            <div class="mb-5">
+              <p class="lead fw-normal mb-1">About</p>
+              <div class="p-4" style="background-color: #f8f9fa;">
+                <%if current_user.location != nil%>
+                <p class="font-italic mb-1">Lives in : <%= current_user.location%></p>
+				<%end%>
+				<%if current_user.work_at != nil%>
+          <p class="font-italic mb-0">works at :<%= current_user.work_at %></p>
+        <%end%>
+
+				<%if current_user.about != nil%>
+					<p class="font-italic mb-1"><%= current_user.about%></p>
+				<%end%>
+
+			  <%if current_user.mobile_no != nil%>
+					<p class="font-italic mb-1">Mobile number : <%=current_user.mobile_no%></p>
+				<%end%>
+
+			  </div>
+          </div>
+			      <div class="d-flex justify-content-between align-items-center mb-4">
+              <p class="lead fw-normal mb-0">Recent photos</p>
+              <h3 class="mb-0"><a href="/post/new" class="text-muted text-decoration-none"><i class="bi bi-upload"></i></a></h3>
+            </div>
+			      <div class=" d-flex flex-wrap">
+              <div class="row g-2 ">
+			          <%@postscurrent.each do |i|  %>
+			            <% if i.image_url%>			
+                    <div class="col mb-2">
+                      <%= image_tag(i.image.url,height:300, width:300,class:"img-fluid m-3")%>
+                    </div>
+                  <%else%>
+					        <%end%>
+			          <%end%>
+			        </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

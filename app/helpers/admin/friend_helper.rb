@@ -1,0 +1,2 @@
+module Admin::FriendHelper
+end

@@ -1,0 +1,57 @@
+
+
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+ 
+
+<div class="login_form_wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <!-- login_wrapper -->
+                <div class="login_wrapper">
+
+<h2>Sign up</h2>                    
+                     <div class="formsix-e">
+                        <div class="form-group i-password"> 
+                            <%=  f.text_field :name  ,class:"form-control",placeholder:"Name"%>
+                        </div>
+                    </div>
+
+                    
+                     <div class="formsix-e">
+                        <div class="form-group i-password"> 
+                            <%=f.text_field :mobile_no  ,class:"form-control",placeholder:"Mobile Number"%>
+                        </div>
+                    </div>
+                                        
+                    <div class="formsix-pos">
+                        <div class="form-group i-email"> 
+                        
+                            <%= f.email_field :email ,class:"form-control",placeholder:"Email Address *",id:"email2"%>
+                        </div>
+                    </div>
+                    <div class="formsix-e">
+                        <div class="form-group i-password"> 
+                            <%= f.password_field :password, autocomplete: "new-password" ,class:"form-control",placeholder:"Password *"%>
+                        </div>
+                    </div>
+                     <div class="formsix-e">
+                        <div class="form-group i-password"> 
+                            <%=  f.password_field :password_confirmation, autocomplete: "new-password" ,class:"form-control",placeholder:"Confirm Password *"%>
+                        </div>
+                    </div>
+
+
+
+                    <div class="login_btn_wrapper">    <%= f.submit "Sign up",class:"btn btn-primary login_btn" %> </div>
+                    <div class="login_message">
+                        <p>Already have an account ? <a href="/users/sign_in"> Login </a> </p>
+                    </div>
+                </div> <!-- /.login_wrapper-->
+            </div>
+        </div>
+    </div>
+</div>
+<% end %>
+

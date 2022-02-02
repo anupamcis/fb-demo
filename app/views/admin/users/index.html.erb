@@ -1,0 +1,8 @@
+<h1>Users List</h1><br>
+<%@users.each do|user|%>
+    <% if user.user_type != current_user.user_type%>
+        <img src="https://bootdey.com/img/Content/avatar/avatar6.png " class="avatar" alt="avatar height="100px" width="100px""> 
+        <p><%=user.name%> <i class="fa fa-sheild"></i></p>
+        <h6><%= link_to 'delete' ,admin_user_path(user.id),method: :delete %></h6>
+    <%end%>
+<%end%>

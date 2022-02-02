@@ -1,0 +1,27 @@
+<br>
+<h2 class="card-title text-center">Total Replies on this comment : <%=@repliescount%></h2>
+<%@replies.each do|i|%>
+    <div class="row d-flex justify-content-center mt-100 mb-100">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="comment-widgets">
+                    <div class="d-flex flex-row comment-row m-t-0">
+                        <div class="p-2"><img src="https://i.imgur.com/Ur43esv.jpg" alt="user" width="50" class="rounded-circle"></div>
+                            <div class="comment-text w-100 mb-5 ">
+                                <h3 class="font-medium"><%=@users.find(i.userid).name%> </h3><span class="m-b-15 d-block", style="font-family:sans-serif;font-size:1.8em;"" ><%=i.text%></small>
+                                <div class="comment-footer"> <span class="text-muted float-right"><%=i.created_at%></span> <br>     
+                                    <% if i.userid == current_user.id %>             
+                                                              <button type="button" class="btn btn-cyan btn-sm"><a href="/reply/new/<%=i.id%>">Repy</a></button>
+
+                                    <button type="button" class="btn btn-cyan btn-sm"><a href="/replies/<%=i.id%>">Replies</a></button>        
+                                        <%=link_to 'Delete',comment_path(i.id), method: "delete",data:{confirm: "Are you sure ?"},class:"btn btn-primary"%>
+                                    <%end%>
+                                </div>
+                            </div>
+                        </div>               
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+<%end%>

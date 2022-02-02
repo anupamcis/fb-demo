@@ -1,0 +1,12 @@
+<h1>Friend List</h1><br>
+<%@users.each do|user|%>
+  <%if user.id!=current_user.id%>
+    <%if user.user_type != "admin"%>
+      <img src="https://bootdey.com/img/Content/avatar/avatar6.png " class="avatar" alt="avatar height="100px" width="100px""> 
+      <p><%=user.name%> <i class="fa fa-sheild"></i></p>
+      <h5><a href="/create/<%=user.id%>" class="btn btn-success" method="POST" >Add Friend</a></h5>
+      <%=link_to 'Add Friend',"#",:onclick =>"this.style.visibility = 'hidden'"%>
+      
+    <%end%>
+  <%end%>
+<%end%>
