@@ -76,3 +76,7 @@ gem "twitter-bootstrap-rails"
 gem 'devise'
 
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem "omniauth-rails_csrf_protection"

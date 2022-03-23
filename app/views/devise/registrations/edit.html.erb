@@ -53,13 +53,27 @@
                             <%= f.file_field :image %><br>
 	                    </div>
                     </div>
+
+                    <div class="form-outline mb-4">
+                      <%= f.label :Change_Password %><br />
+                      <%= f.password_field :password, autocomplete: "new-password",placeholder:"leave blank if you don't want to change password" ,class:"form-control form-control-lg" %>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                      <%= f.password_field :password_confirmation, autocomplete: "new-password",placeholder:"Re-enter new password" ,class:"form-control form-control-lg" %>
+                    </div>
+
 	
                     <div class="formsix-e">
                         <div class="form-group i-password"> 
-                            <%= f.password_field :current_password, autocomplete: "current-password" ,class:"form-control",placeholder:"Current Password*"%>
+                           <%= f.label :Current_Password %><br />
+                            <%= f.password_field :current_password, autocomplete: "current-password" ,class:"form-control",placeholder:"Enter Your Current Password*   (For new user current password: 12345678) "%>
                         </div>
                     </div>
                      
+
+
+
 
                     <div class="login_btn_wrapper">     
                       <%= f.submit "Update" %>

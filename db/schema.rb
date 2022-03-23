@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_02_104026) do
+ActiveRecord::Schema.define(version: 2022_03_17_090657) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2022_02_02_104026) do
     t.integer "friends_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "friendship_status"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -63,6 +64,15 @@ ActiveRecord::Schema.define(version: 2022_02_02_104026) do
     t.integer "post_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "friends_id"
+    t.string "text"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "message_status", default: "false"
   end
 
   create_table "pictures", force: :cascade do |t|
@@ -76,8 +86,6 @@ ActiveRecord::Schema.define(version: 2022_02_02_104026) do
 
   create_table "posts", force: :cascade do |t|
     t.string "text"
-    t.integer "like_count"
-    t.integer "comment_count"
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

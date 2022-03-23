@@ -1,34 +1,39 @@
 class ProfileController < ApplicationController
-  
+  before_action :counting 
+
   def indexp
-    @postscurrent = User.find(current_user.id).posts
-    @postcount = postcount()
-    @friendcount = friendcount()
   end
   
-
-  def userprofile
-    @posts =Post.all
+  def user_profile
     @users=User.find(params[:id])
     @userpost = @users.posts
-    @postscurrent = User.find(current_user.id).posts
-
-    @postcount = postcount()
-    @friendcount = friendcount()
-
   end
 
-  def userpost
+  def user_post
     @postscurrent = User.find(current_user.id).posts
   end
   
-
+  def requestcount()
+    count=0
+    friends=Friendlist.all
+    friends.each do |friend|
+      if friend.friends_id == current_user.id
+        if friend.friendship_status == "f" 
+          count+=1
+        end
+      end
+    end
+    return count
+  end
+  
   def friendcount()
     count=0
     friends=Friendlist.all
     friends.each do |friend|
       if friend.current_user_id == current_user.id
-        count+=1
+        if friend.friendship_status != "f" 
+          count+=1
+        end
       end
     end
     return count
@@ -40,6 +45,15 @@ class ProfileController < ApplicationController
       count+=1
     end
     return count
+  end
+
+  private
+  
+  def counting
+    @postscurrent = User.find(current_user.id).posts
+    @postcount = postcount()
+    @friendcount = friendcount()
+    @requestcount = requestcount()
   end
 
 end

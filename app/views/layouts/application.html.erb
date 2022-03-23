@@ -11,32 +11,30 @@
     <title><%= content_for?(:title) ? yield(:title) : "Fakebook" %></title>
     <%= csrf_meta_tags %>
         <%= stylesheet_link_tag "home" %>
-
     <%= javascript_include_tag "application" %>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">Facebook</a>
+          <a class="navbar-brand" href="#">Fakebook</a>
         </div>
         <% if user_signed_in? %>
-          <ul class="nav navbar-nav">
+        <div class="container justify-content-end">
+          <ul class="nav navbar-nav ">
             <% if current_user.user_type == "admin"%>
-            
               <a class="navbar-brand" href="/admin/home/indexadmin">Home</a>
               <a class="navbar-brand" href="/admin/users/index">Users</a>
-              <%# <li><a class="navbar-brand" href="/admin/friend/index">Profile</a></li> %>
-              <li> <a class="nav-link" href="/users/sign_out"  data-method="delete"> Logout</a></li>
             <% else %>
               <li><a class="navbar-brand" href="/index">Home</a></li>
               <li><a class="navbar-brand" href="/indexf">Friend list</a></li>
+              <li><a class="navbar-brand" href="/message/indexm">Message</a></li>
               <li><a class="navbar-brand" href="/indexp">Profile</a></li>
-              <li> <a class="nav-link" href="/users/sign_out"  data-method="delete"> Logout</a></li>
             <%end%>
           </ul>
+        </div>
+              <li> <a class="nav-link text-white" href="/users/sign_out"  data-method="delete"> Logout</a></li>
         <% end %>
-        
       </div>
     </nav>
     <%= yield %>
@@ -45,8 +43,3 @@
     </footer>
   </body>
 </html>
-
-
-
-
-

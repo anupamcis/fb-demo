@@ -1,0 +1,68 @@
+<%= stylesheet_link_tag "message" %>
+<div class="container-fluid h-100">
+	<div class="row justify-content-center h-100">		
+	    <div class="col-md-8 col-xl-6 chat">
+            <div class="card">
+                <div class="card-header msg_head">
+                    <div class="d-flex bd-highlight">
+                        <div class="img_cont mb-5">
+                            <% if User.find($friendid).image_url%>
+                                <img src="<%=User.find($friendid).image_url%>" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2 round rounded-circle" style="width: 100px; z-index: 1">
+                            <%else%>
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2 round rounded-circle" style="width: 100px; z-index: 1">
+                            <%end%>	                          
+                        </div>
+                        <div class="user_info">
+                            <span><%=User.find($friendid).name%></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body msg_card_body">
+                    <%if @messages != nil%>
+                        <%@messages.each do|message|%>
+                            <%if message.text != nil%>
+                                    <% if message.friends_id == current_user.id%>
+                                    <div class="d-flex justify-content-start mb-4">
+                                        <div class="img_cont_msg m-2">
+                                            <% if User.find(message.user_id).image_url%>
+                                                <img src="<%=User.find(message.user_id).image_url%>" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2 round rounded-circle" style="width: 100px; z-index: 1">
+                                            <%else%>
+                                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2 round rounded-circle" style="width: 100px; z-index: 1">
+                                            <%end%>	                                  
+                                        </div>
+                                        <div class="msg_cotainer">
+                                            <%=message.text%>
+                                        </div>
+                                    </div>
+                                    <%else%>
+
+                                    <div class="d-flex justify-content-end mb-4">
+                                        <div class="msg_cotainer_send">
+                                            <%=message.text%>
+                                        </div>
+                                        <div class="img_cont_msg mb-2 m-2">
+                                            <% if User.find(message.user_id).image_url%>
+                                                <img src="<%=User.find(message.user_id).image_url%>" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2 round rounded-circle" style="width: 100px; z-index: 1">
+                                            <%else%>
+                                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2 round rounded-circle" style="width: 100px; z-index: 1">
+                                            <%end%>
+                                        </div>
+                                    </div>
+                                    <%end%>
+                            <%end%>
+                        <%end%>
+                    <%end%>
+                </div>
+                            
+                <div class="card-footer">
+                    <div class="input-group ">                  
+                        <%= form_with(url: "/message/create_message", method: :messages) do |form| %>
+                            <%= form.text_field :text ,class:"form-group type_msg round rounded-3" ,placeholder:"Type your message..."%>
+                            <%= form.submit :Send ,class:" send_btn"%>
+                        <% end %>	
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+</div>

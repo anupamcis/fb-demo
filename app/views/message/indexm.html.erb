@@ -1,0 +1,48 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Chat</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
+        <%= stylesheet_link_tag "message" %>
+    </head>
+	<body>
+		<div class="container-fluid h-100">
+			<div class="row justify-content-center h-100">
+				<div class="col-md-4 col-xl-3 chat"><div class="card mb-sm-3 mb-md-0 contacts_card">
+					<div class="card-body contacts_body">
+						<ui class="contacts">
+                        <%@message.each do |message|%>
+                            <%if message.text == nil%>
+                                <%if message.user_id == current_user.id%>
+                                    <li class="active">
+                                        <div class="d-flex mr-3 m-2">	
+                                            <a style="text-decoration:none;" href="friend_message/<%=message.friends_id%>">
+                                                <% if User.find(message.friends_id).image_url%>
+                                                    <img src="<%=User.find(message.friends_id).image_url%>" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-1 mb-1 round rounded-circle" style="width: 80px; z-index: 1">
+                                                <%else%>
+                                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-1 mb-1 round rounded-circle" style="width: 80px; z-index: 1">
+                                                <%end%>	    
+                                            <span style="font-family:sans-serif;font-size:1.5em; text-decoration:none;"><i class="icon ion-md-time"></i><%=  User.find(message.friends_id).name%></span>
+                                            </a>
+                                        </div>
+                                        <%# <%=link_to 'Hide Conversation',message_path(i.id), method: "delete",data:{confirm: "Are you sure ?"},class:"btn btn-danger"%></td>                                    
+                                    </li>     
+                                <%end%>
+                            <%end%>
+                        <%end%>
+						</ui>
+					</div>
+					<div class="card-footer"></div>
+				</div>
+            </div>  
+		</div>
+	</body>
+</html>

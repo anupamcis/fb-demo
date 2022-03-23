@@ -47,6 +47,8 @@
                     <div class="login_btn_wrapper">    <%= f.submit "Sign up",class:"btn btn-primary login_btn" %> </div>
                     <div class="login_message">
                         <p>Already have an account ? <a href="/users/sign_in"> Login </a> </p>
+                        <p><%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path, method: :post %></p>
+
                     </div>
                 </div> <!-- /.login_wrapper-->
             </div>

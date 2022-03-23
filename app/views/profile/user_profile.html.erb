@@ -9,10 +9,11 @@
         <div class="card">
           <div class="rounded-top text-white d-flex flex-row" style="background-color: #000; height:200px;">
             <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
-              <button type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark" style="z-index: 1;">
-				<%= link_to ' Edit profile ', edit_user_registration_path(),class:"text-decoration-none text-dark"%>
-              </button>
+            	<% if @users.image_url%>
+                <img src="<%=@users.image_url%>" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
+							<%else%>
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
+     			    <%end%>	              
             </div>
             <div class="ms-3" style="margin-top: 130px;">
               <h5><%=@users.name%>s</h5>
@@ -31,8 +32,9 @@
                 <p><a class="small text-muted mb-0" href="#" style="text-decoration:none;">Friends</a></p>
 				
               </div>
-       
             </div>
+              <h3 class="mb-0"><a href="/message/create/<%=@users.id%>" class="text-muted text-decoration-none">Message</a></h3>
+
           </div>
           <div class="card-body p-4 text-black">
             <div class="mb-5">
@@ -67,40 +69,50 @@
 
 
 
-<%@userpost.each do |i|%>
+<%@userpost.each do |post|%>
     <section class="hero">
         <div class="container mb-5">
-            <div class="row">	
+          <div class="row">	
 		        <div class="col-lg-6 offset-lg-3">
 			        <div class="cardbox shadow-lg bg-white m-3 mb-4">
 			            <div class="cardbox-heading ">
 			                <div class="media m-0 ">
 			                    <div class="d-flex m-3 mr-3">
-				                    <a href=""><img class="img-fluid rounded-circle " src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/users/4.jpg" alt="User" height="70px" width="70px"><span style="font-family:sans-serif;font-size:2.5em;"><%=@users.name%></span></a>
+				                    <a href="">
+                            	<% if User.find(post.user_id).image_url%>
+                                <img src="<%=User.find(post.user_id).image_url%>" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
+                              <%else%>
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
+     			                    <%end%>	          
+                                 <span style="font-family:sans-serif;font-size:2em;"><%=@users.name%></span></a>
 			                    </div>
 			                    <div class="media-body m-3">
-				                    <large><span style="font-family:sans-serif;font-size:1.5em;"> <i class="icon ion-md-pin"></i><%=i.text%></span></large><br>
-				                    <small><span><i class="icon ion-md-time"></i>Posted at :- <%=i.created_at%></span></small>
+				                    <large><span style="font-family:sans-serif;font-size:1.5em;"> <i class="icon ion-md-pin"></i><%=post.text%></span></large><br>
+				                    <small><span><i class="icon ion-md-time"></i>Posted at :- <%=post.created_at%></span></small>
 			                    </div>
 			                </div>
 			            </div>
 			            <div class="cardbox-item ">
-							 <% if i.image_url%>
-								 <%= image_tag(i.image.url,height:550, width:550,class:"img-fluid m-3")%>
-							 <%else%>
-     			       		 <%end%>			 	
-						</div class="cardbox-item m-3">
-						<div class="container d-flex m-3 mb-5">
-							<div class="border border-dark m-2">
-								<h4><a href="/like/indexlike/<%=i.id%>"><i class="bi bi-hand-thumbs-up m-5"></i> </a></h4>
-							</div>
-							<div class="border border-dark m-2">
-								<h4><a href="/comment/index/<%=i.id%> "><i href="/comment/index/<%=i.id%> " class="bi bi-chat-dots m-5"></i></a></h4>
-							</div>		
-						</div>
-			        </div>
-                </div>	
-            </div>
+				      			<% if post.image_url%>
+							    	  <%= image_tag(post.image.url,height:550, width:550,class:"img-fluid m-3")%>
+							      <%else%>
+     			       		<%end%>			 	
+						      </div class="cardbox-item m-3">
+                  <div class="container d-flex m-3 mb-5">
+                    <div class="border border-dark m-2">
+                      <%if Like.find_by(user_id:current_user.id,post_id:post.id)%>
+                        <h4><%=post.likes.count%><a href="/like/indexlike/<%=post.id%>"><i class="bi bi-hand-thumbs-down m-5"></i> </a></h4>
+                      <%else%>
+                        <h4><%=post.likes.count%><a href="/like/indexlike/<%=post.id%>"><i class="bi bi-hand-thumbs-up m-5"></i> </a></h4>
+                      <%end%>
+                    </div>               
+                    <div class="border border-dark m-2">
+                      <h4><%=post.comments.count%><a href="/comment/index/<%=post.id%> "><i href="/comment/index/<%=post.id%> " class="bi bi-chat-dots m-5"></i></a></h4>
+                    </div>		
+                  </div>
+              </div>
+            </div>	
+          </div>
         </div>
     </section>
 <%end%>
