@@ -4,7 +4,7 @@ class PostController < ApplicationController
   def index
     case 
     when current_user.user_type=="user"     
-      post =Post.all 
+      post =Post.order(created_at: :desc) 
       current_user_posts=current_user.posts
       # @posts = Post.posts
       # @posts = Post.postsid
@@ -19,8 +19,8 @@ class PostController < ApplicationController
   end
 
   def create
-    post = Post.new(post_params)
-    post.update(user_id:current_user.id)
+    @post = Post.new(post_params)
+    @post.update(user_id:current_user.id)
     redirect_to indexp_url
   end
 

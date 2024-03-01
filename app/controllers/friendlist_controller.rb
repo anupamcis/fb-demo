@@ -1,4 +1,5 @@
 
+class FriendlistController  < ApplicationController
   def indexf
     userid = Array.new
     user = Array.new
@@ -67,6 +68,7 @@
   def friend_request
     @friendrequest = Array.new
     @friendlist = Friendlist.all
+    
     j=0
     k=1
     @friendlist.each do |i|

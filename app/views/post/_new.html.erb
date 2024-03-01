@@ -1,0 +1,16 @@
+<%= form_with(url: "/post", method: :post) do |form| %>
+      <div class="modal-body">
+            <%= form.text_field :text %><br>
+         <p><%= form.label :Choose_Image %></p>
+         <div class="formsix-pos">
+            <div class="form-group i-email">
+               <%= form.file_field :image %><br>
+            </div>
+         </div>
+         <%# <%= form.file_field :image <br> %>
+      </div>
+      <div class="modal-footer">
+            <%= form.submit "Upload"  %>
+         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+<% end %>

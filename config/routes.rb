@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :restaurants
   get 'message/indexm'
   get '/like/indexlike/:id',to: "like#index_like"
   get "/like/liked_by/:id",to: "like#liked_by"

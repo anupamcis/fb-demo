@@ -3,9 +3,23 @@
 body {
     background-color: #eee;
     font-family: "Poppins", sans-serif;
-    font-weight: 300
+    font-weight: 300;    
+    line-height: 1.4;
+    color: rgba(0, 0, 0, 0.85);
+    
 }
 
+.alligning-container{
+    justify-content: space-around;
+    max-width: 94%;
+    border-width: thin !important;
+    border: solid;
+    display: flex;
+    border-radius: 5px;
+    margin-left: 10px;
+    border-right: none;
+    border-left: none;
+}
 .card {
     border: none
 }
@@ -90,9 +104,6 @@ hr {
 
 
 
-body {
-    background: #eee
-}
 
 .date {
     font-size: 11px
@@ -164,13 +175,7 @@ body {
 * {
     box-sizing: border-box;
 }
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    line-height: 1.4;
-    color: rgba(0, 0, 0, 0.85);
-    background-color: #f9f9f9;
 
-}
 button {
     -moz-appearance: none;
     -webkit-appearance: none;
@@ -493,10 +498,6 @@ p {
 }
 
 
-body{
-    margin-top:20px;
-    background:white;    
-}
 /*==================================================
   Nearby People CSS
   ==================================================*/
@@ -530,10 +531,6 @@ img.profile-photo-lg{
 
 
 
-body{
-    background-color: #f4f7f6;
-    margin-top:20px;
-}
 .card {
     background: #fff;
     transition: .5s;
@@ -786,7 +783,4 @@ body{
         overflow-x: auto
     }
 }
-
-
-
 

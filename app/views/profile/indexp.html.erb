@@ -69,14 +69,26 @@
             </div>
 			      <div class="d-flex justify-content-between align-items-center mb-4">
               <p class="lead fw-normal mb-0">Recent photos</p>
-              <h3 class="mb-0"><a href="/post/new" class="text-muted text-decoration-none"><i class="bi bi-upload"></i></a></h3>
+              <%= link_to "Upload new post",new_post_path ,class:"btn btn-primary btn-lg mb-4",data: { bs_toggle: 'modal', bs_target: '#postuploadModal' ,remote: true}%>
+            </div>
+              <div class="modal fade" id="postuploadModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="postuploadLabel">Upload new post</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div id="newPostForm">
+                  </div>
+                </div>
+              </div>
             </div>
 			      <div class=" d-flex flex-wrap">
               <div class="row g-2 ">
 			          <%@postscurrent.each do |post|  %>
 			            <% if post.image_url%>			
                     <div class="col mb-2">
-                      <%= image_tag(post.image.url,height:300, width:300,class:"img-fluid m-3")%>
+                      <%= image_tag(post.image.url,height:50, width:50,class:"img-fluid m-3")%>
                     </div>
                   <%else%>
 					        <%end%>
