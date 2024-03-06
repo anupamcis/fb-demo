@@ -4,70 +4,75 @@
     </div>
     <% end %>
 <% if @pending != []%>
-
-
-    <div class="container mt-3">
-      <h4>Send requests</h4>
-       <%@pending.each do|pending|%>
-          <div class="row">
-              <div class="col-md-8">
-                  <div class="people-nearby">   
-                    <div class="nearby-user">
-                      <div class="row">
-                        <div class="col-md-2 col-sm-2">
-                        <a style="text-decoration:none;" href="profile/userprofile/<%=pending%>">
-                          <% if User.find(pending).image_url%>
-                            <img src="<%=User.find(pending).image.url%>" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2 round rounded-circle" style="width: 100px; z-index: 1">
-                          <%else%>
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2 round rounded-circle" style="width: 100px; z-index: 1">  
-                          <%end%>	 
-                          </a>	                    
-                        </div>
-                        <div class="col-md-7 col-sm-7">
-                          <h5><a class="profile-link" style="text-decoration:none; color:black;" ><%=User.find(pending).name%></a></h5>
-                          <p><%=User.find(pending).location%></p>
-                        </div>
-                        <div class="col-md-3 col-sm-3 ">
-                          <%= link_to "Cancel Request",friendlist_path(Friendlist.find_by(friends_id:pending).id),method: :delete,class:"btn btn-danger pull-right mb-3",role:"button"%>
-                        </div>
-                      </div>
-                    </div>
+  <div class="container mt-3">
+    <h4 style="    border-radius: 20px;
+    color: white;
+    background-color: black;
+    text-align: center;
+    padding: 50px;">Already Send requests</h4>
+    <%@pending.each do|pending|%>
+      <div class="row" style="justify-content: center;">
+        <div class="col-md-8">
+            <div class="people-nearby">   
+              <div class="nearby-user">
+                <div class="row" style="align-items: center;">
+                  <div class="col-md-2 col-sm-2">
+                    <a style="text-decoration:none;" href="profile/userprofile/<%=pending%>">
+                      <% if User.find(pending).image_url%>
+                        <img src="<%=User.find(pending).image.url%>" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2 round rounded-circle" style="width: 100px; z-index: 1">
+                      <%else%>
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2 round rounded-circle" style="width: 100px; z-index: 1">  
+                      <%end%>	 
+                    </a>	                    
                   </div>
+                  <div class="col-md-7 col-sm-7">
+                    <h5><a href="profile/user_profile/<%=pending%>" class="profile-link" style="text-decoration:none; color:black;" ><%=User.find(pending).name%></a></h5>
+                    <p><%=User.find(pending).location%></p>
+                  </div>
+                  <div class="col-md-3 col-sm-3 ">
+                    <%=button_to 'Cancle Request', friendlist_path(Friendlist.find_by(friends_id:pending).id, type: "requests"),class:"btn btn-danger pull-right mb-3",method: :delete%>	
+                  </div>
+                </div>
               </div>
             </div>
-  <%end%>
         </div>
+      </div>
+    <%end%>
+  </div>
 <%end%>
   
-
-  <div class="container">
-    <h4>New Users</h4>
-    </div>
-    <%@users.each do|user|%>
-          <div class="row" style="justify-content: center;">
-              <div class="col-md-8">
-                  <div class="people-nearby">   
-                    <div class="nearby-user">
-                      <div class="row">
-                      <div class="d-flex mr-3 m-2">	
-                      <a style="text-decoration:none;" href="profile/userprofile/<%=user%>">
-                        <% if User.find(user).image_url%>
-                          <img src="<%=User.find(user).image_url%>" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2 round rounded-circle" style="width: 100px; z-index: 1">
-                        <%else%>
-                          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2 round rounded-circle" style="width: 100px; z-index: 1">
-                        <%end%>	    
-                      <span style="font-family:sans-serif;font-size:2em; text-decoration:none;"><i class="icon ion-md-time"></i><%= User.find(user).name%></span>
-                      </a>				
-                    </div>
-                          <p><%=User.find(user).location%></p>
-                        </div>
-                        <div class="col-md-3 col-sm-3 ">
-                          <a href="/create/<%=user%>" role="button" class="btn btn-success pull-right mb-3">Add Friend</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+<div class="container">
+  <h4 style="    border-radius: 20px;
+    color: white;
+    background-color: black;
+    text-align: center;
+    padding: 50px;">New Users</h4>
+  <%@users.each do|user|%>
+    <div class="row" style="justify-content: center;">
+      <div class="col-md-8">
+        <div class="people-nearby">   
+          <div class="nearby-user">
+            <div class="row" style=" align-items: center;">
+              <div class="col-md-2 col-sm-2">	
+                <a style="text-decoration:none;" href="profile/userprofile/<%=user%>">
+                  <% if User.find(user).image_url%>
+                    <img src="<%=User.find(user).image_url%>" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2 round rounded-circle" style="width: 100px; z-index: 1">
+                  <%else%>
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2 round rounded-circle" style="width: 100px; z-index: 1">
+                  <%end%>	    
+                </a>				
+              </div>
+              <div class="col-md-7 col-sm-7">
+                <h5><a href="profile/user_profile/<%=user%>" class="profile-link" style="text-decoration:none; color:black;" ><i class="icon ion-md-time"></i><%= User.find(user).name%></a></h5>
+                <p><%=User.find(user).location%></p>
+              </div>
+              <div class="col-md-3 col-sm-3 ">
+                <a href="/create/<%=user%>" role="button" class="btn btn-success pull-right mb-3">Add Friend</a>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <%end%>
+  <%end%>
+</div>

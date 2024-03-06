@@ -3,7 +3,6 @@ class CommentController < ApplicationController
     @users=User.all
     @comments=Comment.all
     @postcomments = Post.find(params[:id]).comments
-    # debugger
     @replies=Array.new
     i=0
     j=1
@@ -15,9 +14,7 @@ class CommentController < ApplicationController
         end
         j+=1
       end
-      
     end
-    # debugger
     $postid=Post.find(params[:id])
     @commentcount=commentcount()
   end

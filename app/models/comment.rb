@@ -7,7 +7,6 @@ class Comment < ApplicationRecord
   # after_save :comments
   # private
   # def comments
-  #   # debugger
   #   if text == ""
   #     Comment.last.delete
   #   end
@@ -18,7 +17,6 @@ class Comment < ApplicationRecord
   # private
   # def comment
   #   if text == "anu"
-  #     debugger
   #     Comment.create(text:"anupam",userid:userid,post_id:post_id)
   #   end
   # end 

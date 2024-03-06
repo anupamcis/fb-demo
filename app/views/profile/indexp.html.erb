@@ -75,8 +75,28 @@
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="postuploadLabel">Upload new post</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="form-outline mb-4" style="width: 100%;">
+                    <div style="display: flex;">
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div>
+                      <h1>Create new post</h1><br>
+                      <%= form_with(url: "/post", method: :post,) do |form| %>
+                      <p>Enter Caption for your post<p>
+                        <%= form.text_field :text %><br>
+                        <p><%= form.label :Choose_Image %></p>
+                        <div class="formsix-pos">
+                            <div class="form-group i-email">
+                              <%= form.file_field :image %><br>
+                            </div>
+                        </div>
+                        <%# <%= form.file_field :image <br> %>
+                        <div class="login_btn_wrapper">     
+                            <%= form.submit "Upload" %>
+                        </div>
+                      <% end %>
+                      </div>
+                    </div>
                   </div>
                   <div id="newPostForm">
                   </div>

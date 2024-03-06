@@ -1,4 +1,6 @@
- <div class="login_form_wrapper ">
+ <div class="login_form_wrapper " style="
+    background-color: black;
+">
     <div class="container">
         <div class="row ">
             <div class="col-md-8 col-md-offset-2 ">
@@ -6,19 +8,30 @@
                   <h2>Log in</h2>
                   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
                     <div class="formsix-pos">
-                        <div class="form-group i-email "> 
+                        <div class="form-group i-email" style="
+    align-items: center;
+    flex-direction: column;
+    display: flex;"> 
                           <%= f.label :email %><br />
                           <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
                         </div>
                     </div>
                     <div class="formsix-e">
-                        <div class="field">
+                        <div class="field" style="
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+">
                           <%= f.label :password %><br />
                           <%= f.password_field :password, autocomplete: "current-password" %>
                         </div>
                     </div>
                     <%# <div class="login_remember_box">  <a href="/users/password/new" class="forget_password"> Forgot Password </a> </div> %>
-                    <div class="login_btn_wrapper">     <%= f.submit "Log in" %> </div>
+                    <div  style="
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+">     <%= f.submit "Log in" %> </div>
                       <div class="login_message ">
                         <p>Don’t have an account ?<br> <a href="/users/sign_up"> Sign up </a> </p>
                         <p><%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path, method: :post %></p>

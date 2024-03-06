@@ -20,7 +20,6 @@ class MessageController < ApplicationController
     @messages=Array.new
     message=Message.all
     message.each do|i|
-      # debugger
       if (i.friends_id == params[:id].to_i && i.user_id==current_user.id) || (i.friends_id == current_user.id && i.user_id == params[:id].to_i) 
         while (j<k)
           @messages[j]=i
@@ -33,7 +32,6 @@ class MessageController < ApplicationController
   
   def create_message
     message= Message.create(user_id:current_user.id,friends_id:$friendid,text:params[:text])
-    # debugger
     redirect_to friend_message_path($friendid)
   end
 

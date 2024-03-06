@@ -3,14 +3,16 @@
       <%=msg %>
     </div>
     <% end %>
-<%@friendrequest.each do |request|%>
-  <div class="container">
-      <div class="row">
-          <div class="col-md-8">
-              <div class="people-nearby">
-                <div class="nearby-user">
-                  <div class="row">
-                    <div class="col-md-2 col-sm-2">
+
+
+<%@friendrequest.each do|request|%>
+
+			<div class="row" style="justify-content: center;">
+				<div class="col-md-8">
+					<div class="people-nearby">   
+						<div class="nearby-user">
+						<div class="row" style="align-items: center;">
+							<div class="col-md-2 col-sm-2">
                       <% if User.find(request.current_user_id).image_url%>
                         <img src="<%=User.find(request.current_user_id).image.url%>" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
                       <%else%>
@@ -18,18 +20,18 @@
                       <%end%>
                     </div>
                     <div class="col-md-7 col-sm-7">
-                      <h5><a href="#" class="profile-link" style="text-decoration:none; ,text-white" ><%=User.find(request.current_user_id).name%></a></h5>
+                      <h5><a href="profile/user_profile/<%=request.current_user_id%>" class="profile-link" style="text-decoration:none; ,text-white" ><%=User.find(request.current_user_id).name%></a></h5>
                       <p><%=User.find(request.current_user_id).location%></p>
                     </div>
                     <div class="col-md-3 col-sm-3 ">
                       <a href="/friendlist/update/<%=request.id%>" role="button" class="btn btn-success pull-right mb-3">Accept Request</a>
-                    <%# <button class="btn btn-danger pull-right">Decline request</button> %>
-                    <%= link_to "Delete Request",friendlist_path(request.id),method: :delete,class:"btn btn-danger pull-right mb-3",role:"button"%>
+                    <%=button_to 'Decline Request', friendlist_path(request.id, type: "request"),class:"btn btn-danger pull-right mb-2",method: :delete%>	
+
                     </div>
-                  </div>
-                </div>
-              </div>
-        </div>
-    </div>
-  </div>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
 <%end%>

@@ -9,7 +9,6 @@ class HomeController < ApplicationController
   end
 
   def update
-    # debugger
     @user = User.find(params[:id])
     if @posts.update()
       redirect_to @posts

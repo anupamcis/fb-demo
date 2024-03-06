@@ -39,7 +39,7 @@
                     <%=postcomment.text%>
                     </h5>
                     </div>
-                        <button type="button" class="btn btn-cyan btn-sm"><a href="/reply/new/<%=postcomment.id%>">Repy</a></button><br>
+                        <button type="button" class="btn btn-cyan btn-sm"><a href="/reply/new/<%=postcomment.id%>">Reply</a></button><br>
                         <% if postcomment.userid == current_user.id %>
                             <%=link_to 'Edit', edit_comment_path(postcomment.id),class:"btn btn-success"%>
                             <%=link_to 'Delete',comment_path(postcomment.id), method: "delete",data:{confirm: "Are you sure ?"},class:"btn btn-danger"%></td>
@@ -77,7 +77,7 @@
                                     <h6>
                                         <%=reply.text%>                   
                                     </h6>
-                                        <button type="button" class="btn btn-cyan btn-sm"><a href="/reply/new/<%=reply.id%>">Repy</a></button>
+                                        <button type="button" class="btn btn-cyan btn-sm"><a href="/reply/new/<%=reply.id%>">Reply</a></button>
                                         <button type="button" class="btn btn-cyan btn-sm"><a href="/replies/<%=reply.id%>">Replies</a></button><br>
                                         <% if reply.userid == current_user.id %>
                                             <%=link_to 'Edit', edit_comment_path(reply.id),class:"btn btn-success"%>
@@ -98,8 +98,8 @@
     <%end%>
 <%end%>
 
-<div class="row d-flex justify-content-center">
-  <div class="col-md-8 col-lg-6">
+<div style="justify-content: center; display: flex;">
+  <div class="col-md-8 col-lg-6" style="padding-bottom: 50px; width: 37%;">
     <div class="card shadow-0 border" style="background-color: #f0f2f5;">
       <div class="card-body p-4">
         <div class="form-outline mb-4">

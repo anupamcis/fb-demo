@@ -99,8 +99,14 @@ class FriendlistController  < ApplicationController
   def destroy
     if params[:id]
       Friendlist.find(params[:id]).delete
-      flash[:success] = 'Friend request canceled or Friend removed '
-      redirect_to '/indexf'
+      flash[:success] = 'Friend request canceled or Friend removed'
+      if params[:type] == "already"
+        redirect_to friendlist_friend_path
+      elsif params[:type] == "request"
+        redirect_to friendlist_friendrequest_path
+      else
+        redirect_to '/indexf'
+      end
     else
       flash[:danger] = 'Friendship request NOT canceled'
     end

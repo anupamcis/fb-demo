@@ -17,6 +17,7 @@ Rails.application.routes.draw do
    
   get "/message/create/:id",to: "message#create"
   get "/message/destroy/:id",to: "message#destroy"
+  get "like/liked_by/profile/user_profile/:id", to:"profile#user_profile"
   get "message/indexm", to:"message#indexm"
   get "message/friend_message/:id",to: "message#friend_message" ,as: "friend_message"
   post "message/create_message"

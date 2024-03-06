@@ -1,10 +1,11 @@
+<h1 style="padding: 25px; justify-content: center; display: flex;"> Liked By </h1>
 <%@liked_by.each do|user|%>
   <div class="container">
-    <div class="row">
+    <div class="row" style="justify-content: center; ">
       <div class="col-md-8">
         <div class="people-nearby">   
           <div class="nearby-user">
-            <div class="row">
+            <div class="row" style="align-items: center;">
               <div class="col-md-2 col-sm-2">
                 <% if User.find(user.user_id).image_url%>
                   <img src="<%=User.find(user.user_id).image.url%>" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
@@ -13,7 +14,7 @@
                 <%end%>	                     
               </div>
               <div class="col-md-7 col-sm-7">
-                <h5><a class="profile-link" style="text-decoration:none; color:black;" ><%=User.find(user.user_id).name%></a></h5>
+                <h5><a href="profile/user_profile/<%=user.user_id%>" class="profile-link" style="text-decoration:none; color:black;" ><%=User.find(user.user_id).name%></a></h5>
                 <h6>
                 <p><%=User.find(user.user_id).location%></p>
               </div>

@@ -11,7 +11,6 @@
 	</div>
 <% end %>
 <%@posts.each do |post|  %>
-<%# <%= format_name(@posts)  %>
 	<section class="hero">
     	<div class="container mb-3">
         	<div class="row">	
@@ -23,16 +22,16 @@
 									<div>
 									<a style="text-decoration:none;" href="profile/user_profile/<%=post.user.id%>">
                                     	<% if User.find(post.user_id).image_url%>
-											<img src="<%=User.find(post.user_id).image_url%>" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2 round rounded-circle" style="width: 80px; z-index: 1">
+											<img src="<%=User.find(post.user_id).image_url%>" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2 round rounded-circle" style="width: 60px; z-index: 1">
 										<%else%>
 											<img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2 round rounded-circle" style="width: 80px; z-index: 1">
 										<%end%>	    
-									<span style="font-family:sans-serif;font-size:2em; text-decoration:none;"><i class="icon ion-md-time"></i><%=  post.user.name%></span>
+									<span style="font-family:sans-serif;font-size:1em; text-decoration:none;"><i class="icon ion-md-time"></i><%=  post.user.name%></span>
 									</a>
 									</div>
 									<div style="flex-grow: 5;"></div>
 									<div style="flex-grow: 1;">
-									<p style="font-family:sans-serif;font-size:0.5em; margin-left: 20% !important; margin-top: 29px; max-height: 10px;"><%=post.created_at.strftime('%d/%m/%Y')%></p>
+									<p style="font-family:sans-serif;font-size:12px; margin-left: 20% !important; margin-top: 46px; max-height: 10px;"><%=post.created_at.strftime('%d/%m/%Y')%></p>
 								</div>
 								</div>
 			   					<div class="media-body m-2">
@@ -42,38 +41,34 @@
 			 			</div>
 			 			<div class="cardbox-item">
 							<% if post.image_url%>
-							<div style="
-    justify-content: space-around;
-    display: flex;
-">
+							<div style="justify-content: space-around;display: flex;">
 						 		<%= image_tag(post.image.url,class:"img-fluid m-3", style:"max-width: 600px; max-height: 500px;")%>
      			        	</div>
 							<%end%>
 							<% @liked_by = Post.find(post.id).likes %>
-							<% if @liked_by.present? %>
-							<div style="
-    justify-content: space-around;
-    display: flex;
-	    height: 30px;
-">
-								<div class="bi bi-hand-thumbs-up" style="colour: grey">
+							
+							<div style="justify-content: space-around; display: flex; height: 30px;">
+								<div style="colour: grey;" class="bi bi-hand-thumbs-up grey-icon">
+								<% if @liked_by.present? %>
 									<% counts = @liked_by.count%>
 									<%if counts == 1%>
-										<p style="display: inline; colour: grey""><%= User.find_by(id: @liked_by.first.user_id).name if @liked_by.present?%></p>
+										<a href="profile/user_profile/<%=@liked_by.first.user_id%>" class="profile-link" style="text-decoration:none; color:grey;" ><%=User.find_by(id: @liked_by.first.user_id).name%></a>
 									<%elsif counts == 2%>
-										<p style="display: inline; colour: grey""><%= User.find_by(id: @liked_by.first.user_id).name if @liked_by.present?%> and
-										<%= User.find_by(id: @liked_by.second.user_id).name if @liked_by.present?%></p>
-									<%else%>
-										<p style="display: inline; colour: grey""><%= User.find_by(id: @liked_by.first.user_id).name if @liked_by.present?%>,
-										<%= User.find_by(id: @liked_by.second.user_id).name if @liked_by.present?%> and <a style="text-decoration: none; color: #6c757d;" href="/like/liked_by/<%=post.id%>"><%=counts-2%> others</a></p>
+										<p style="display: inline; colour: grey"><a href="profile/user_profile/<%=@liked_by.first.user_id%>" class="profile-link" style="text-decoration:none; color:grey;" ><%= User.find_by(id: @liked_by.first.user_id).name if @liked_by.present?%></a> and
+										<a href="profile/user_profile/<%=@liked_by.second.user_id%>" class="profile-link" style="text-decoration:none; color:grey;" ><%= User.find_by(id: @liked_by.second.user_id).name if @liked_by.present?%></a></p>
+									<%elsif counts > 2%>
+										<p style="display: inline; colour: grey"><a href="profile/user_profile/<%=@liked_by.first.user_id%>" class="profile-link" style="text-decoration:none; color:grey;" ><%= User.find_by(id: @liked_by.first.user_id).name if @liked_by.present?%></a>,
+										<a href="profile/user_profile/<%=@liked_by.second.user_id%>" class="profile-link" style="text-decoration:none; color:grey;" ><%= User.find_by(id: @liked_by.second.user_id).name if @liked_by.present?%></a> and <a style="text-decoration: none; color: #6c757d;" href="/like/liked_by/<%=post.id%>"><%=counts-2%> others</a></p>
 									<%end%>
-									
+									<%else%>
+										<p style="display: inline; colour: grey"><a> 0 likes</a></p>
+									<%end%>
 								</div>
 								<div>
 									<p style="display: inline;"> <%=post.comments.count%> <a href="comment/index/<%=post.id%> " style="color: grey;" class="bi bi-chat-dots"></a></p>
 									</div>
 								</div>
-							<%end%>
+								
 							<div class="alligning-container" style="height: 50px;">
 								<div class=" m-2" style="max-width: 30%;">
 									<%if Like.find_by(user_id:current_user.id,post_id:post.id)%>
